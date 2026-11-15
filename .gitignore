@@ -3,3 +3,6 @@
 *.HEIC
 receipt_previews/
 ~$*
+# 참고용 문서는 올리지 않음
+*.pdf
+*.pptx
