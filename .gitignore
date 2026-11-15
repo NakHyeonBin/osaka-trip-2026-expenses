@@ -1,0 +1,5 @@
+# 영수증 사진은 올리지 않음
+*.heic
+*.HEIC
+receipt_previews/
+~$*
