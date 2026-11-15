@@ -4,143 +4,211 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
+<meta name="color-scheme" content="light">
 <title>오사카 여행 지출 정산</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard.min.css">
 <style>
-:root{--page:#f9f9f7;--surface:#fcfcfb;--ink:#0b0b0b;--ink2:#52514e;--muted:#898781;--line:#e1e0d9;--ring:rgba(11,11,11,.10);--wash:#f0efec;--nh:#2a78d6;--yh:#eb6834;--co:#1baf7a;--bar:#2a78d6;--warn-bg:#fff6e0;--warn-ink:#6b4a00;--warn-line:#f0dba6}
-@media (prefers-color-scheme:dark){:root{--page:#0d0d0d;--surface:#1a1a19;--ink:#f0efec;--ink2:#c3c2b7;--line:#2c2c2a;--ring:rgba(255,255,255,.10);--wash:#2c2c2a;--nh:#3987e5;--yh:#d95926;--co:#199e70;--bar:#3987e5;--warn-bg:#2a2412;--warn-ink:#f1d48a;--warn-line:#4a3f1c}}
+:root{--page:#f3f5f8;--card:#fff;--ink:#16202e;--ink2:#4c5a6b;--muted:#8592a3;--line:#e6eaf0;--soft:#eef1f5;--band:#172a45;--band2:#21395c;--accent:#2b5797;--nh:#2b5797;--yh:#d9734e;--co:#7d8a99;--note:#b7791f;--note-bg:#fdf8ee;--shadow:0 1px 2px rgba(22,32,46,.04),0 8px 24px rgba(22,32,46,.06)}
 *{box-sizing:border-box}
-body{margin:0;background:var(--page);color:var(--ink);font:15px/1.5 system-ui,-apple-system,"Segoe UI","Malgun Gothic",sans-serif;-webkit-text-size-adjust:100%}
-.wrap{max-width:1040px;margin:0 auto;padding:28px 16px 64px}
-h1{font-size:24px;line-height:1.2;margin:0 0 4px;letter-spacing:-.02em}
-h2{font-size:16px;margin:0 0 4px}
-.sub{color:var(--ink2);margin:0;font-size:14px}
-.hint{color:var(--muted);font-size:12.5px;margin:0 0 14px}
-.card{background:var(--surface);border:1px solid var(--ring);border-radius:14px;padding:18px}
-section{margin-top:14px}
-.hero{display:grid;grid-template-columns:minmax(0,1fr);gap:16px}
-.hero-num{font-size:40px;font-weight:700;letter-spacing:-.03em;line-height:1.1}
-.label{font-size:12.5px;color:var(--ink2);font-weight:600}
-.stack{display:flex;gap:2px;height:22px;margin:12px 0 10px}
-.stack i{display:block;height:100%;min-width:3px}
-.stack i:first-child{border-radius:4px 0 0 4px}.stack i:last-child{border-radius:0 4px 4px 0}
-.stack.thin{height:10px;margin:0}
-.legend{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:13px;color:var(--ink2)}
-.legend b{color:var(--ink);font-weight:650}
-.dot{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;vertical-align:-1px}
-i.c-NH,.track i.c-NH{background:var(--nh)}i.c-YH,.track i.c-YH{background:var(--yh)}i.c-CO,.track i.c-CO{background:var(--co)}
-.people{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
-.person{text-align:left;font:inherit;color:inherit;cursor:pointer;background:var(--surface);border:1px solid var(--ring);border-radius:14px;padding:16px;width:100%}
-.person:hover{border-color:var(--muted)}
-.person[aria-pressed=true]{outline:2px solid var(--ink);outline-offset:-2px}
-.person .who{font-weight:700;font-size:15px}
-.person .amt{font-size:26px;font-weight:700;letter-spacing:-.02em;margin:4px 0 2px}
-.person .pct{font-size:12.5px;color:var(--muted)}
-.split{margin:12px 0 0;padding:10px 0 0;border-top:1px solid var(--line);display:grid;gap:5px;font-size:13px;color:var(--ink2)}
-.split div{display:flex;justify-content:space-between;gap:10px}
-.split span:last-child{color:var(--ink);font-variant-numeric:tabular-nums;white-space:nowrap}
-.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
-.row{display:grid;grid-template-columns:minmax(84px,34%) minmax(0,1fr) auto;gap:10px;align-items:center;padding:6px 0;font-size:13.5px}
-.row .name{color:var(--ink2);overflow-wrap:anywhere;line-height:1.3}
-.row .val{font-variant-numeric:tabular-nums;font-weight:600;white-space:nowrap;text-align:right;min-width:72px}
-.row .val small{color:var(--muted);font-weight:400;margin-left:4px}
-.track{height:10px;display:flex;gap:2px}
-.track i{display:block;height:100%;background:var(--bar);border-radius:0 4px 4px 0;min-width:2px}
-.track.multi i{border-radius:0}.track.multi i:last-child{border-radius:0 4px 4px 0}
-.notice{background:var(--warn-bg);border:1px solid var(--warn-line);color:var(--warn-ink);border-radius:12px;padding:12px 14px;font-size:13.5px}
-.notice b{display:block;margin-bottom:2px}
-.notice + .notice{margin-top:8px}
-.filters{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:12px 0 4px}
-.seg{display:inline-flex;border:1px solid var(--ring);border-radius:10px;overflow:hidden;background:var(--surface)}
-.seg button{font:inherit;font-size:13.5px;border:0;background:none;color:var(--ink2);padding:8px 12px;cursor:pointer}
-.seg button + button{border-left:1px solid var(--line)}
-.seg button[aria-pressed=true]{background:var(--ink);color:var(--surface);font-weight:650}
-.filters input,.filters select{font:inherit;font-size:13.5px;color:var(--ink);background:var(--surface);border:1px solid var(--ring);border-radius:10px;padding:8px 10px;min-width:0}
-.filters input{flex:1 1 180px}
-.result{font-size:13px;color:var(--ink2);margin:8px 0 0}
-.result b{color:var(--ink)}
-.day{display:flex;justify-content:space-between;align-items:baseline;margin:20px 2px 8px;font-size:13px;color:var(--ink2);font-weight:650}
-.tx{background:var(--surface);border:1px solid var(--ring);border-radius:12px;margin-bottom:8px}
-.tx summary{list-style:none;cursor:pointer;padding:12px 14px;display:grid;grid-template-columns:44px minmax(0,1fr) auto;gap:4px 10px;align-items:start}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--page);color:var(--ink);font:15px/1.55 Pretendard,-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic","Segoe UI",sans-serif;letter-spacing:-.01em}
+.num{font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px 72px}
+
+/* 표지 밴드 */
+.band{background:linear-gradient(135deg,var(--band),var(--band2));color:#fff}
+.band .wrap{padding:36px 20px 30px}
+.eyebrow{font-size:12px;font-weight:700;letter-spacing:.14em;color:#9fb4d3}
+.band h1{font-size:30px;line-height:1.2;margin:8px 0 6px;letter-spacing:-.03em}
+.band p{margin:0;color:#c3d0e3;font-size:14.5px}
+.cover{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap}
+.cover .big{text-align:right}
+.cover .big span{display:block;font-size:12.5px;color:#9fb4d3;font-weight:600}
+.cover .big b{font-size:46px;line-height:1.05;letter-spacing:-.04em;font-weight:800}
+.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:rgba(255,255,255,.14);border-radius:12px;overflow:hidden;margin-top:26px}
+.kpis div{background:rgba(23,42,69,.55);padding:14px 16px}
+.kpis span{display:block;font-size:12px;color:#9fb4d3;font-weight:600}
+.kpis b{font-size:19px;font-weight:700}
+.kpis small{display:block;font-size:11.5px;color:#9fb4d3}
+
+/* 섹션 머리 */
+.sec{margin-top:40px}
+.sec-h{display:flex;gap:14px;align-items:flex-start;margin:0 2px 16px}
+.sec-h .no{font-size:13px;font-weight:800;color:#fff;background:var(--accent);border-radius:8px;padding:5px 9px;line-height:1.2;margin-top:3px}
+.sec-h h2{font-size:21px;margin:0;letter-spacing:-.03em;line-height:1.3}
+.sec-h p{margin:3px 0 0;color:var(--ink2);font-size:14px}
+.card{background:var(--card);border-radius:16px;padding:22px;box-shadow:var(--shadow)}
+.card h3{font-size:14px;margin:0 0 14px;color:var(--ink2);font-weight:700}
+.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.grid-a{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:16px;align-items:start}
+.col{display:grid;gap:16px}
+
+/* 몫 막대 */
+.share{display:flex;gap:3px;height:34px;border-radius:9px;overflow:hidden}
+.share i{display:flex;align-items:center;padding:0 12px;color:#fff;font-style:normal;font-size:13px;font-weight:700;white-space:nowrap;overflow:hidden;min-width:6px}
+.dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:7px}
+.bg-NH{background:var(--nh)}.bg-YH{background:var(--yh)}.bg-CO{background:var(--co)}
+.legend{display:flex;flex-wrap:wrap;gap:6px 22px;font-size:13.5px;color:var(--ink2);margin-top:12px}
+.legend b{color:var(--ink)}
+
+/* 사람 패널 */
+.person{position:relative;overflow:hidden}
+.person::before{content:"";position:absolute;inset:0 auto 0 0;width:5px}
+.person.p-NH::before{background:var(--nh)}.person.p-YH::before{background:var(--yh)}
+.person .top{display:flex;justify-content:space-between;align-items:baseline}
+.person .who{font-size:15px;font-weight:800}
+.person .pct{font-size:13px;color:var(--muted);font-weight:600}
+.person .amt{font-size:38px;font-weight:800;letter-spacing:-.04em;line-height:1.15;margin:6px 0 14px}
+.mix{display:flex;gap:2px;height:8px;border-radius:99px;overflow:hidden}
+.mix i{display:block;height:100%;min-width:3px}
+.p-NH .mix i{background:var(--nh)}.p-YH .mix i{background:var(--yh)}
+.mix i:nth-child(2){opacity:.55}.mix i:nth-child(3){opacity:.28}
+.parts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:12px 0 18px}
+.parts span{display:block;font-size:12px;color:var(--muted);font-weight:600}
+.parts b{font-size:15px;font-weight:700}
+.toplist{border-top:1px solid var(--line);padding-top:12px}
+.toplist h4{margin:0 0 6px;font-size:12px;color:var(--muted);font-weight:700}
+.toplist div{display:flex;justify-content:space-between;gap:12px;padding:5px 0;font-size:13.5px}
+.toplist div span:first-child{color:var(--ink2);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.toplist div span:last-child{font-weight:650}
+.link{font:inherit;font-size:13px;font-weight:700;color:var(--accent);background:none;border:0;padding:0;margin-top:12px;cursor:pointer}
+.link:hover{text-decoration:underline}
+.companion{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;margin-top:16px;padding:16px 22px;font-size:14px;color:var(--ink2)}
+.companion b{color:var(--ink);font-size:17px}
+
+/* 가로 막대 */
+.row{display:grid;grid-template-columns:minmax(96px,32%) minmax(0,1fr) 104px;gap:12px;align-items:center;padding:7px 0;font-size:13.5px}
+.row .name{color:var(--ink);line-height:1.3;overflow-wrap:anywhere}
+.row .name small{color:var(--muted);margin-left:4px}
+.row .val{text-align:right;font-weight:700;white-space:nowrap}
+.row .val small{color:var(--muted);font-weight:500;margin-left:5px;font-size:12px}
+.track{height:10px;background:var(--soft);border-radius:99px;overflow:hidden;display:flex}
+.track i{display:block;height:100%;background:var(--accent)}
+.track i + i{margin-left:2px}
+.track i.bg-NH{background:var(--nh)}.track i.bg-YH{background:var(--yh)}.track i.bg-CO{background:var(--co)}
+
+/* 확인 필요 */
+.checks{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.check{border-top:3px solid var(--note)}
+.check .tag{font-size:11.5px;font-weight:800;color:var(--note);letter-spacing:.06em}
+.check b.t{display:block;font-size:16px;margin:6px 0 2px;letter-spacing:-.02em}
+.check .v{font-size:24px;font-weight:800;letter-spacing:-.03em;margin:2px 0 8px}
+.check p{margin:0;font-size:13px;color:var(--ink2);line-height:1.6}
+
+/* 거래 내역 */
+.filters{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:12px}
+.seg{display:inline-flex;background:var(--soft);border-radius:10px;padding:3px}
+.seg button{font:inherit;font-size:13.5px;font-weight:600;border:0;background:none;color:var(--ink2);padding:7px 14px;border-radius:8px;cursor:pointer}
+.seg button[aria-pressed=true]{background:#fff;color:var(--ink);box-shadow:0 1px 3px rgba(22,32,46,.14)}
+.filters select,.filters input{font:inherit;font-size:13.5px;color:var(--ink);background:#fff;border:1px solid var(--line);border-radius:10px;padding:9px 12px;min-width:0}
+.filters input{flex:1 1 200px}
+.filters select:focus,.filters input:focus{outline:2px solid var(--accent);outline-offset:-1px}
+.result{margin-left:auto;font-size:13.5px;color:var(--ink2)}
+.result b{color:var(--ink);font-size:15px}
+.list{padding:0;overflow:hidden}
+.day{display:flex;justify-content:space-between;background:#f7f9fb;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:9px 22px;font-size:12.5px;font-weight:700;color:var(--ink2)}
+.day:first-child{border-top:0}
+.tx + .tx{border-top:1px solid var(--line)}
+.tx summary{list-style:none;cursor:pointer;padding:14px 22px;display:grid;grid-template-columns:48px minmax(0,1fr) auto 18px;gap:2px 12px;align-items:center}
 .tx summary::-webkit-details-marker{display:none}
-.tx .time{color:var(--muted);font-size:13px;font-variant-numeric:tabular-nums;padding-top:1px}
-.tx .m{font-weight:650;overflow-wrap:anywhere;line-height:1.35}
+.tx summary:hover{background:#fafbfd}
+.tx .time{color:var(--muted);font-size:13px}
+.tx .m{font-weight:700;overflow-wrap:anywhere;line-height:1.35}
 .tx .meta{font-size:12.5px;color:var(--muted);margin-top:2px}
-.tx .total{font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap;text-align:right}
-.tx .total small{display:block;font-weight:400;color:var(--muted);font-size:12px}
-.shares{grid-column:2/-1;display:flex;flex-wrap:wrap;gap:4px 12px;font-size:12.5px;color:var(--ink2);margin-top:4px;align-items:center}
-.shares .more{margin-left:auto;color:var(--muted)}
-.tx[open] .more::after{content:" 접기"}.tx:not([open]) .more::after{content:" 펼치기"}
-.items{border-top:1px solid var(--line);padding:6px 14px 12px}
-.items .txnote{font-size:12.5px;color:var(--ink2);padding:8px 0 4px}
-.it{display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:2px 10px;padding:7px 0;border-top:1px solid var(--line);font-size:13.5px;align-items:baseline}
-.it:first-of-type{border-top:0}
+.tx .who{display:flex;flex-wrap:wrap;gap:3px 12px;font-size:12.5px;color:var(--ink2);margin-top:5px;align-items:center}
+.tx .total{text-align:right;font-weight:800;font-size:16px;white-space:nowrap}
+.tx .total small{display:block;font-weight:500;color:var(--muted);font-size:11.5px}
+.chev{width:8px;height:8px;border-right:2px solid var(--muted);border-bottom:2px solid var(--muted);transform:rotate(45deg);transition:transform .15s;justify-self:center}
+.tx[open] .chev{transform:rotate(-135deg)}
+.pill{font-size:11px;font-weight:700;border-radius:99px;padding:2px 8px;white-space:nowrap;background:var(--soft);color:var(--ink2)}
+.pill.warn{background:var(--note-bg);color:var(--note)}
+.items{background:#fafbfd;border-top:1px solid var(--line);padding:6px 22px 14px 82px}
+.items .txnote{font-size:12.5px;color:var(--ink2);padding:10px 0 6px}
+.it{display:grid;grid-template-columns:minmax(0,1fr) auto 84px;gap:2px 12px;padding:8px 0;border-top:1px solid var(--line);font-size:13.5px;align-items:baseline}
 .it .n{overflow-wrap:anywhere}
 .it .n small{display:block;color:var(--muted);font-size:12px}
-.it .n small.unsure{color:var(--warn-ink)}
-.it .a{font-variant-numeric:tabular-nums;white-space:nowrap;text-align:right}
-.badge{font-size:11.5px;border:1px solid var(--line);border-radius:99px;padding:1px 8px;color:var(--ink2);white-space:nowrap}
-.flag{font-size:11.5px;background:var(--warn-bg);color:var(--warn-ink);border:1px solid var(--warn-line);border-radius:99px;padding:1px 8px;white-space:nowrap}
-.empty{padding:28px;text-align:center;color:var(--muted)}
-.foot{color:var(--muted);font-size:12.5px;margin-top:22px;line-height:1.6}
-a{color:inherit}
-@media (max-width:760px){.people,.grid2{grid-template-columns:minmax(0,1fr)}.hero-num{font-size:34px}.wrap{padding-top:20px}}
-@media print{.filters{display:none}.tx{break-inside:avoid}}
+.it .n small.unsure{color:var(--note)}
+.it .a{text-align:right;font-weight:600;white-space:nowrap}
+.empty{padding:40px;text-align:center;color:var(--muted)}
+.foot{color:var(--muted);font-size:12.5px;margin:26px 2px 0;line-height:1.7}
+.foot a{color:var(--ink2)}
+
+@media (max-width:820px){
+  .grid2,.grid-a,.checks{grid-template-columns:minmax(0,1fr)}
+  .kpis{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .cover .big{text-align:left}.cover .big b{font-size:40px}
+  .band h1{font-size:25px}.band .wrap{padding-top:28px}
+  .wrap{padding-left:14px;padding-right:14px}
+  .card{padding:18px}.sec{margin-top:32px}.sec-h h2{font-size:19px}
+  .person .amt{font-size:32px}
+  .row{grid-template-columns:minmax(84px,34%) minmax(0,1fr) 92px;gap:8px}
+  .tx summary{padding:13px 16px;grid-template-columns:40px minmax(0,1fr) auto 14px;gap:2px 8px}
+  .day{padding:9px 16px}.items{padding:6px 16px 12px}
+  .result{margin-left:0;width:100%}
+  .share i{padding:0 8px;font-size:12px}
+}
+@media print{.filters,.link{display:none}.card{box-shadow:none;border:1px solid var(--line)}.tx{break-inside:avoid}.band{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
 </style>
 </head>
 <body>
-<main class="wrap">
-  <header>
-    <h1>오사카 여행 지출 정산</h1>
-    <p class="sub">2026년 11월 12일–14일 · 영수증 <span id="nRec"></span>장 · 일본 엔(¥) 기준</p>
-  </header>
+<header class="band"><div class="wrap">
+  <div class="cover">
+    <div><div class="eyebrow">OSAKA · EXPENSE REPORT</div><h1>오사카 여행 지출 정산</h1><p>2026년 11월 12일 – 14일 · 영수증 <span id="nRec"></span>장 기준 · 일본 엔(¥)</p></div>
+    <div class="big"><span>영수증 결제 합계</span><b class="num" id="total"></b></div>
+  </div>
+  <div class="kpis" id="kpis"></div>
+</div></header>
 
-  <section class="card hero">
-    <div>
-      <div class="label">영수증 결제 합계</div>
-      <div class="hero-num" id="total"></div>
-      <div class="stack" id="heroStack" role="img"></div>
-      <div class="legend" id="heroLegend"></div>
+<main class="wrap">
+  <section class="sec">
+    <div class="sec-h"><span class="no">01</span><div><h2 id="h1"></h2><p>공동 지출은 NH·YH가 1/2씩, 4인 식사는 우리 2인분(각 1/4)과 동행 2인분(1/2)으로 나눴습니다.</p></div></div>
+    <div class="card"><div class="share" id="share" role="img"></div><div class="legend" id="shareLegend"></div></div>
+    <div class="grid2" style="margin-top:16px" id="people"></div>
+    <div class="card companion" id="companion"></div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-h"><span class="no">02</span><div><h2 id="h2"></h2><p>결제액 기준입니다. 막대에 마우스를 올리면 건수를 볼 수 있습니다.</p></div></div>
+    <div class="grid-a">
+      <div class="card"><h3>분류별 지출</h3><div id="byCat"></div></div>
+      <div class="col">
+        <div class="card"><h3>날짜별 지출 · 누구 몫인지</h3><div id="byDay"></div></div>
+        <div class="card"><h3>결제수단별 지출</h3><div id="byPay"></div></div>
+      </div>
     </div>
   </section>
 
-  <section>
-    <div class="people" id="people"></div>
-    <p class="hint" style="margin:8px 2px 0">카드를 누르면 아래 거래 목록이 그 사람 몫만 보이게 바뀝니다. 공동 지출은 NH·YH가 1/2씩, 4인 식사는 우리 2인분(NH·YH 각 1/4)과 동행 2인분(1/2)으로 나눴습니다.</p>
+  <section class="sec">
+    <div class="sec-h"><span class="no">03</span><div><h2>확인이 필요한 항목</h2><p>영수증만으로는 확정할 수 없어 합계를 건드리지 않고 따로 표시한 내용입니다.</p></div></div>
+    <div class="checks" id="checks"></div>
   </section>
 
-  <section class="grid2">
-    <div class="card"><h2>날짜별</h2><p class="hint">막대 색은 누구 몫인지 나타냅니다.</p><div id="byDay"></div></div>
-    <div class="card"><h2>결제수단별</h2><p class="hint">영수증에 인쇄된 표기 그대로 구분했습니다.</p><div id="byPay"></div></div>
-  </section>
-
-  <section class="card"><h2>분류별</h2><p class="hint">결제액 기준, 큰 순서.</p><div id="byCat"></div></section>
-
-  <section id="notices"></section>
-
-  <section>
-    <h2 style="margin:26px 2px 0">거래 내역</h2>
+  <section class="sec" id="txSec">
+    <div class="sec-h"><span class="no">04</span><div><h2>거래 내역</h2><p>줄을 누르면 품목과 누구 몫인지가 펼쳐집니다.</p></div></div>
     <div class="filters">
       <div class="seg" id="who" role="group" aria-label="사람 선택"></div>
       <select id="cat" aria-label="분류"><option value="">전체 분류</option></select>
       <input id="q" type="search" placeholder="거래처·품목 검색" aria-label="검색">
+      <div class="result" id="result"></div>
     </div>
-    <p class="result" id="result"></p>
-    <div id="list"></div>
+    <div class="card list" id="list"></div>
   </section>
 
   <p class="foot">합계는 각 영수증·카드 전표의 최종 결제액을 한 번씩만 더한 값입니다. 품목 금액이 세전으로 인쇄된 영수증은 결제액을 품목 금액 비율로 나눠 각자 몫을 계산했고, 엔 미만은 반올림해 표시합니다. 누가 결제했는지(카드 주인)는 영수증으로 알 수 없어 "누구 몫인지"만 정리했습니다.<br>원본 데이터: <a href="일본여행_영수증_품목별정리.csv">일본여행_영수증_품목별정리.csv</a></p>
 </main>
 <script>
 const DATA=[{"date":"2026-11-12","time":"23:42","merchant":"Henn na Hotel Express (Shinsaibashi)","category":"숙박","amount":800,"items":[{"name":"숙박세/숙박 관련 세금 2건","quantity":2,"amount":800,"note":"영수증 표기 ACCOM TAX 400엔 ×2","owner":"NH"}],"source":"IMG_3740.heic","note":"체크인 11/12, 숙박 기간 11/12~11/14. 영수증에 표시된 세금 800엔만 포함.","payment":"신용카드 (끝 4자리 미표기)"},{"date":"2026-11-13","time":"00:04","merchant":"FamilyMart 일본바시 1초메점","category":"편의점","amount":1546,"items":[{"name":"레지봉투 20호","quantity":1,"amount":5,"owner":"YH"},{"name":"산토리 천연수 2L","quantity":1,"amount":141,"owner":"YH"},{"name":"미쓰야 사이다 500ml","quantity":1,"amount":183,"owner":"YH"},{"name":"196 무설탕 아세로라 W5","quantity":1,"amount":257,"owner":"YH"},{"name":"키레이트 MUKUMI","quantity":2,"amount":378,"owner":"YH"},{"name":"신라면 미니컵","quantity":1,"amount":153,"owner":"YH"},{"name":"BRULEE MILK","quantity":1,"amount":429,"owner":"YH"}],"source":"IMG_3742.heic","note":"영수증에 표기된 품목명을 읽기 쉬운 한글/영문으로 옮김.","payment":"신용카드 (끝 4자리 미표기)"},{"date":"2026-11-13","time":"10:05","merchant":"도톤보리점 별관 (카드전표 표기)","category":"미분류·카드전표","amount":4080,"items":[{"name":"상세 품목 미표기 (카드 매출전표)","quantity":1,"amount":4080,"owner":"공동"}],"source":"IMG_3749.heic","note":"거래일 11/13, 카드 전표 금액 4,080엔. 가맹점 상호/품목은 전표에서 확인 불가.","payment":"Mastercard · 끝자리 7355"},{"date":"2026-11-13","time":"12:02","merchant":"UNIQLO 유카 신사이바시 상점가점","category":"쇼핑·의류","amount":12460,"items":[{"name":"상품코드 2000228407733","quantity":1,"amount":990,"owner":"YH"},{"name":"상품코드 2000219016388","quantity":1,"amount":1990,"owner":"NH"},{"name":"상품코드 2000219016302","quantity":1,"amount":1990,"owner":"NH"},{"name":"상품코드 2000223286982","quantity":1,"amount":5990,"owner":"YH"},{"name":"상품코드 2000223555163","quantity":1,"amount":1500,"owner":"YH"}],"source":"IMG_3745.heic","note":"영수증에는 상품명이 아닌 코드로 인쇄되어 있어 코드와 금액을 기록. 5점.","payment":"VISA/Mastercard (끝 4자리 미표기)"},{"date":"2026-11-13","time":"13:04","merchant":"Oakley Store 오사카 신사이바시","category":"쇼핑·패션잡화","amount":9790,"items":[{"name":"상품코드 FOA409377","quantity":1,"amount":8900,"note":"영수증에 상품명 없이 코드만 인쇄 (바코드 8051731185162)","owner":"YH"},{"name":"소비세 (10%)","quantity":1,"amount":890,"owner":"YH"}],"source":"IMG_3752.heic","note":"세전 8,900엔 + 소비세 890엔. 결제 표기 \"크레디트카드 - VI/MA\", 카드 끝 4자리는 영수증에 없음. 상품 종류는 코드만으로 확인 불가.","payment":"VISA/Mastercard (끝 4자리 미표기)"},{"date":"2026-11-13","time":"21:45","merchant":"신세계 원조 쿠시카츠 다루마 난바 본점","category":"식음료·외식","amount":6347,"items":[{"name":"콜라","quantity":1,"amount":300,"owner":"4인"},{"name":"올프리","quantity":1,"amount":360,"owner":"4인"},{"name":"오렌지주스","quantity":1,"amount":300,"owner":"4인"},{"name":"하이볼 W","quantity":1,"amount":650,"owner":"4인"},{"name":"야리이카(창오징어 꼬치)","quantity":2,"amount":440,"owner":"4인"},{"name":"나니와 포크 꼬치","quantity":3,"amount":900,"owner":"4인"},{"name":"모차렐라 베이컨","quantity":2,"amount":560,"owner":"4인"},{"name":"명란","quantity":1,"amount":220,"owner":"4인"},{"name":"치즈 꼬치","quantity":2,"amount":260,"owner":"4인"},{"name":"반숙풍 계란","quantity":2,"amount":260,"owner":"4인"},{"name":"고구마","quantity":2,"amount":260,"owner":"4인"},{"name":"모치","quantity":2,"amount":260,"owner":"4인"},{"name":"모차렐라 치즈","quantity":1,"amount":220,"owner":"4인"},{"name":"닭튀김","quantity":2,"amount":560,"owner":"4인"},{"name":"모치 치즈 베이컨","quantity":1,"amount":220,"owner":"4인"}],"source":"IMG_3746.heic","note":"4인 식사. 우리 2인분(NH·YH 각 1/4)과 동행 2인분(1/2)으로 나눔. 영수증 합계 6,347엔(세금 포함).","payment":"신용카드 (끝 4자리 미표기)"},{"date":"2026-11-13","time":"21:58","merchant":"DAISO 난바 에비스바시점","category":"쇼핑·생활용품","amount":550,"items":[{"name":"케이블 프로텍터","quantity":3,"amount":300,"owner":"YH"},{"name":"폼폼푸린 마스코트 장식","quantity":1,"amount":100,"owner":"YH"},{"name":"키티 마스코트 장식","quantity":1,"amount":100,"owner":"YH"}],"source":"IMG_3741.heic","note":"세전 500엔 + 소비세 50엔.","payment":"현금"},{"date":"2026-11-13","time":"23:29","merchant":"돈키호테 도톤보리 미도스지점","category":"쇼핑·식품/잡화","amount":51471,"items":[{"name":"조니워커 위스키 (ジョニーウォーカーブ…)","quantity":1,"amount":19800,"note":"판독 불확실: 품목명이 잘려 세부 종류(라벨) 확인 불가","owner":"NH"},{"name":"자가리코 샐러드 bits (じゃがりこサラダbits)","quantity":1,"amount":349,"owner":"공동"},{"name":"오사카 긴노 고쿠조 바닐라… (大阪銀の極上バニララ…)","quantity":2,"amount":2000,"note":"판독 불확실: 품목명 뒷부분 잘림 · 단가 1,000엔 × 2","owner":"공동"},{"name":"오사카 긴노 고쿠조 바닐라… (大阪銀の極上バニラバ…)","quantity":1,"amount":800,"note":"판독 불확실: 품목명 뒷부분 잘림","owner":"공동"},{"name":"QP 계란밥풍 밥 양념 3개입 (QPたまごかけ風ごはんのたれ3個)","quantity":2,"amount":598,"note":"단가 299엔 × 2","owner":"공동"},{"name":"고릴라의 신는 호카론 (ゴリラの履くホカロン)","quantity":1,"amount":2000,"note":"판독 불확실: 상품 종류 확인 불가","owner":"공동"},{"name":"Jagabee 우스시오맛 75g (75gJagabeeうすしお味)","quantity":1,"amount":359,"owner":"공동"},{"name":"복숭아 가득 하이츄 어소트 (桃満載ハイチュウアソート)","quantity":1,"amount":239,"owner":"공동"},{"name":"베이크 크리미 치즈 (ベイククリーミーチーズ)","quantity":6,"amount":2214,"note":"단가 369엔 × 6","owner":"공동"},{"name":"슈퍼 베이비 고릴라 (☆スーパーベビーゴリラ)","quantity":1,"amount":2200,"note":"판독 불확실: 상품 종류 확인 불가","owner":"공동"},{"name":"마루데 코타쓰 오데카… (まるでこたつ おでか…)","quantity":1,"amount":1799,"note":"판독 불확실: 품목명 뒷부분 잘림","owner":"공동"},{"name":"겨울의 구치도케 포키 (冬のくちどけポッキー)","quantity":3,"amount":777,"note":"단가 259엔 × 3","owner":"공동"},{"name":"알포트 미니 초코 (アルフォートミニチョ…)","quantity":3,"amount":507,"note":"단가 169엔 × 3","owner":"공동"},{"name":"살롱파스 120매 (セ]サロンパス120マイ)","quantity":1,"amount":1390,"owner":"공동"},{"name":"사사 초콜릿 (紗々)","quantity":1,"amount":339,"owner":"공동"},{"name":"다케노코노사토 딸기&… (たけのこの里いちご&…)","quantity":1,"amount":299,"owner":"공동"},{"name":"니치반 케어리브 손가락용 (ニチバン ケアリーヴ 指)","quantity":1,"amount":399,"owner":"공동"},{"name":"잇테키겐 라벤더 (イツテキゲンラベンダー)","quantity":1,"amount":328,"owner":"공동"},{"name":"1방울 소취원 스위트 로… (1滴消臭元 スウィートロ…)","quantity":1,"amount":328,"owner":"공동"},{"name":"헬로키티 마네키네코 (ハローキティ 招き猫)","quantity":1,"amount":1380,"owner":"공동"},{"name":"MG000B-1 立体 (상품코드형 표기)","quantity":1,"amount":700,"note":"판독 불확실: 코드형 표기라 상품 확인 불가","owner":"공동"},{"name":"MG001M-3N 도리이 마그넷 마네키… (MG001M-3N鳥居マグ招…)","quantity":1,"amount":700,"note":"판독 불확실: 품목명 뒷부분 잘림","owner":"공동"},{"name":"퓨레구미 프리미엄 야마나시 (ピュレグミプレミアム山梨)","quantity":1,"amount":199,"owner":"공동"},{"name":"사가미 오리지널 002 (サガミオリジナル002)","quantity":1,"amount":2990,"owner":"공동"},{"name":"캬베진 코와 α 플러스 100정 (キャベジンコーワαプラス 100錠)","quantity":1,"amount":1090,"owner":"공동"},{"name":"사가미 오리지널 001 5P (サガミオリジナル001 5P)","quantity":1,"amount":1320,"owner":"공동"},{"name":"휴족미인 대형 사이즈 라벤… (☆休足美人大判サイズラベ…)","quantity":1,"amount":398,"note":"면세 비대상(★ 표시 없음) · 판독 불확실: 품목명 뒷부분 잘림","owner":"공동"},{"name":"푸룬토 제로 백도+거봉 (ぷるんとゼロ白桃+巨峰)","quantity":2,"amount":458,"note":"단가 229엔 × 2","owner":"공동"},{"name":"킷캣 딸기 쇼콜라 9매 (9枚キットカット苺ショコ…)","quantity":1,"amount":499,"owner":"공동"},{"name":"다케노코노사토 (たけのこの里)","quantity":2,"amount":518,"note":"단가 259엔 × 2","owner":"공동"},{"name":"소비세 — 조니워커분 (10%)","quantity":1,"amount":1980,"owner":"NH","note":"주류는 10% 세율 대상이라 조니워커 세금은 같은 지출자에게 배분"},{"name":"소비세 — 나머지 품목 (8%·10%)","quantity":1,"amount":2514,"owner":"공동","note":"영수증 소비세 합계 4,494엔 중 조니워커분 제외"}],"source":"IMG_3751.heic","note":"세전 소계 46,977엔 + 소비세 4,494엔 = 실제 결제 51,471엔 (43점). 영수증의 면세 환급액 표기 4,454엔은 환급 수령 여부 미확인이라 결제액에서 차감하지 않음.","payment":"해외PAY (모바일 결제)","refund":{"taxTotal":4494,"refundPrinted":4454,"eligibleAmount":46579,"eligibleCount":42,"deadline":"2027-02-11"}},{"date":"2026-11-14","time":"01:28","merchant":"Seven-Eleven 오사카 일본바시역 동점","category":"편의점","amount":339,"items":[{"name":"-196 스트롱 W 레몬 350ml","quantity":1,"amount":173,"owner":"NH"},{"name":"미쓰야 사이다 500ml","quantity":1,"amount":170,"owner":"NH"},{"name":"할인","quantity":1,"amount":-32,"owner":"NH"}],"source":"81643471920__C4224325-A6FE-4E09-8969-7DB929903BB8.heic","note":"상품 343엔에서 32엔 할인, 합계 339엔 (세율별 세금 포함).","payment":"현금"},{"date":"2026-11-14","time":"10:33","merchant":"Light Clinic (카드전표 표기)","category":"진료·상세 미확인","amount":60050,"items":[{"name":"상세 품목 미표기 (카드 매출전표)","quantity":1,"amount":60050,"owner":"NH"}],"source":"IMG_3748.heic","note":"카드 매출전표에 금액 60,050엔만 표시. 업종/서비스 상세 영수증은 제공된 파일에서 확인되지 않음.","payment":"Mastercard · 끝자리 7355"},{"date":"2026-11-14","time":"11:06","merchant":"DAISO / Standard Products / THREEPPY 우메다 DT타워점","category":"쇼핑·생활용품","amount":1980,"items":[{"name":"컴팩트 백","quantity":1,"amount":500,"owner":"NH"},{"name":"코튼 로고 데일리백","quantity":1,"amount":1000,"owner":"NH"},{"name":"실리콘 스펀지","quantity":3,"amount":300,"owner":"NH"}],"source":"IMG_3737.heic","note":"세전 1,800엔 + 소비세 180엔.","payment":"VISA/Mastercard (끝 4자리 미표기)"},{"date":"2026-11-14","time":"13:57","merchant":"그릴론 (Grill Ron) 한큐 3번가점","category":"식음료·외식","amount":2680,"items":[{"name":"데미글라스 오므라이스 & 햄버그","quantity":1,"amount":1280,"owner":"공동"},{"name":"C 세트","quantity":1,"amount":1400,"owner":"공동"}],"source":"IMG_3738.heic","note":"영수증 합계 2,680엔, 2인으로 기재.","payment":"현금"},{"date":"2026-11-14","time":"18:38","merchant":"유이비야 / 간사이 국제공항점","category":"식음료·외식","amount":1980,"items":[{"name":"포크·계란·참치마요 주먹밥","quantity":2,"amount":1980,"owner":"공동"}],"source":"IMG_3744.heic","note":"990엔 × 2개.","payment":"현금"}];
-const PEOPLE=[{k:'NH',name:'NH',c:'c-NH'},{k:'YH',name:'YH',c:'c-YH'},{k:'CO',name:'동행 2인',c:'c-CO'}];
+const PEOPLE=[{k:'NH',name:'NH'},{k:'YH',name:'YH'},{k:'CO',name:'동행 2인'}];
 const RULE={NH:{NH:1},YH:{YH:1},'공동':{NH:.5,YH:.5},'4인':{NH:.25,YH:.25,CO:.5}};
 const OWNER_LABEL={NH:'NH',YH:'YH','공동':'공동 ½','4인':'4인 · 2인분씩'};
 const yen=n=>'¥'+Math.round(n).toLocaleString('en-US');
 const pct=(a,b)=>Math.round(a/b*100)+'%';
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const $=id=>document.getElementById(id);
+const short=s=>s.replace(/\s*\(.*?\)\s*/g,' ').trim();
+const dlabel=d=>`${+d.slice(5,7)}월 ${+d.slice(8)}일`;
 
-// 거래별 몫 계산: 결제액 × (품목 금액 비율) × 분담 규칙
+// 거래별 몫: 결제액 × (품목 금액 비율) × 분담 규칙
 DATA.forEach(t=>{
   const sum=t.items.reduce((s,i)=>s+i.amount,0);t.scale=t.amount/sum;
   t.share={NH:0,YH:0,CO:0};t.kind={NH:{solo:0,joint:0,four:0},YH:{solo:0,joint:0,four:0},CO:{solo:0,joint:0,four:0}};
@@ -150,51 +218,57 @@ DATA.forEach(t=>{
 const total=DATA.reduce((s,t)=>s+t.amount,0);
 const P={};PEOPLE.forEach(p=>P[p.k]={total:0,solo:0,joint:0,four:0});
 DATA.forEach(t=>PEOPLE.forEach(p=>{P[p.k].total+=t.share[p.k];for(const k of['solo','joint','four'])P[p.k][k]+=t.kind[p.k][k]}));
-const stackHTML=(sh,den)=>PEOPLE.filter(p=>sh[p.k]>0).map(p=>`<i class="${p.c}" style="width:${sh[p.k]/den*100}%" title="${p.name} ${yen(sh[p.k])}"></i>`).join('');
+const group=key=>{const m=new Map();DATA.forEach(t=>{const g=m.get(t[key])||{amount:0,n:0,NH:0,YH:0,CO:0};g.amount+=t.amount;g.n++;PEOPLE.forEach(p=>g[p.k]+=t.share[p.k]);m.set(t[key],g)});return[...m]};
+const days=group('date').sort((a,b)=>a[0].localeCompare(b[0])),cats=group('category').sort((a,b)=>b[1].amount-a[1].amount),pays=group('payment').sort((a,b)=>b[1].amount-a[1].amount);
+const biggest=[...DATA].sort((a,b)=>b.amount-a.amount)[0];
 
-$('nRec').textContent=DATA.length;
-$('total').textContent=yen(total);
-const all={};PEOPLE.forEach(p=>all[p.k]=P[p.k].total);
-$('heroStack').innerHTML=stackHTML(all,total);
-$('heroStack').setAttribute('aria-label',PEOPLE.map(p=>`${p.name} ${yen(all[p.k])}`).join(', '));
-$('heroLegend').innerHTML=PEOPLE.map(p=>`<span><i class="dot ${p.c}"></i>${p.name} <b>${yen(all[p.k])}</b> · ${pct(all[p.k],total)}</span>`).join('')+`<span>우리 둘(NH+YH) <b>${yen(all.NH+all.YH)}</b></span>`;
+// 표지
+$('nRec').textContent=DATA.length;$('total').textContent=yen(total);
+$('kpis').innerHTML=[['우리 둘 부담 (NH+YH)',yen(P.NH.total+P.YH.total),'동행 2인분 제외'],['거래',DATA.length+'건',`${days.length}일간`],['하루 평균',yen(total/days.length),'결제액 기준'],['가장 큰 지출',yen(biggest.amount),short(biggest.merchant)]].map(k=>`<div><span>${k[0]}</span><b class="num">${k[1]}</b><small>${esc(k[2])}</small></div>`).join('');
 
-let who='';
-function renderPeople(){
-  $('people').innerHTML=PEOPLE.map(p=>{const x=P[p.k];const rows=p.k==='CO'?[['4인 식사 중 동행 2인분',x.four]]:[['개인 지출',x.solo],['공동 지출의 1/2',x.joint],['4인 식사의 1/4',x.four]];
-    return `<button class="person" data-k="${p.k}" aria-pressed="${who===p.k}"><div class="who"><i class="dot ${p.c}"></i>${p.name}</div><div class="amt">${yen(x.total)}</div><div class="pct">전체의 ${pct(x.total,total)}</div><div class="split">${rows.map(r=>`<div><span>${r[0]}</span><span>${yen(r[1])}</span></div>`).join('')}</div></button>`}).join('');
-}
-$('people').addEventListener('click',e=>{const b=e.target.closest('.person');if(!b)return;setWho(who===b.dataset.k?'':b.dataset.k);$('who').scrollIntoView({behavior:'smooth',block:'start'})});
+// 01 누구 몫
+$('h1').textContent=`NH ${pct(P.NH.total,total)}, YH ${pct(P.YH.total,total)} — 차이는 개인 지출에서 납니다`;
+$('share').innerHTML=PEOPLE.map(p=>`<i class="bg-${p.k}" style="width:${P[p.k].total/total*100}%" title="${p.name} ${yen(P[p.k].total)}">${P[p.k].total/total>.12?`${p.name} ${pct(P[p.k].total,total)}`:''}</i>`).join('');
+$('share').setAttribute('aria-label',PEOPLE.map(p=>`${p.name} ${yen(P[p.k].total)}`).join(', '));
+$('shareLegend').innerHTML=PEOPLE.map(p=>`<span><i class="dot bg-${p.k}"></i>${p.name} <b class="num">${yen(P[p.k].total)}</b> · ${pct(P[p.k].total,total)}</span>`).join('');
+$('people').innerHTML=['NH','YH'].map(k=>{const x=P[k],top=DATA.filter(t=>t.share[k]>0).sort((a,b)=>b.share[k]-a.share[k]).slice(0,4);
+  return `<div class="card person p-${k}"><div class="top"><span class="who">${k}</span><span class="pct">전체의 ${pct(x.total,total)}</span></div><div class="amt num">${yen(x.total)}</div>
+  <div class="mix" title="개인 ${yen(x.solo)} · 공동 ${yen(x.joint)} · 4인 ${yen(x.four)}"><i style="width:${x.solo/x.total*100}%"></i><i style="width:${x.joint/x.total*100}%"></i><i style="width:${x.four/x.total*100}%"></i></div>
+  <div class="parts"><div><span>개인 지출</span><b class="num">${yen(x.solo)}</b></div><div><span>공동의 1/2</span><b class="num">${yen(x.joint)}</b></div><div><span>4인 식사의 1/4</span><b class="num">${yen(x.four)}</b></div></div>
+  <div class="toplist"><h4>큰 지출 순</h4>${top.map(t=>`<div><span>${esc(short(t.merchant))}</span><span class="num">${yen(t.share[k])}</span></div>`).join('')}</div>
+  <button class="link" data-k="${k}">${k} 거래만 보기 →</button></div>`}).join('');
+$('companion').innerHTML=`<span><i class="dot bg-CO"></i>동행 2인 몫 — 4인 식사(다루마 ${yen(DATA.filter(t=>t.share.CO>0).reduce((s,t)=>s+t.amount,0))})의 2인분</span><b class="num">${yen(P.CO.total)}</b>`;
+$('people').addEventListener('click',e=>{const b=e.target.closest('.link');if(!b)return;setWho(b.dataset.k);$('txSec').scrollIntoView({behavior:'smooth',block:'start'})});
 
-// 날짜별(사람 몫 누적) · 결제수단별 · 분류별
-const group=(key)=>{const m=new Map();DATA.forEach(t=>{const g=m.get(t[key])||{amount:0,n:0,NH:0,YH:0,CO:0};g.amount+=t.amount;g.n++;PEOPLE.forEach(p=>g[p.k]+=t.share[p.k]);m.set(t[key],g)});return[...m]};
-const days=group('date').sort((a,b)=>a[0].localeCompare(b[0])),maxDay=Math.max(...days.map(d=>d[1].amount));
-$('byDay').innerHTML=days.map(([d,g])=>`<div class="row"><div class="name">${+d.slice(5,7)}월 ${+d.slice(8)}일 <small style="color:var(--muted)">${g.n}건</small></div><div class="track multi" style="width:${g.amount/maxDay*100}%">${stackHTML(g,g.amount)}</div><div class="val">${yen(g.amount)}</div></div>`).join('')+`<div class="legend" style="margin-top:8px">${PEOPLE.map(p=>`<span><i class="dot ${p.c}"></i>${p.name}</span>`).join('')}</div>`;
-const bars=(el,rows)=>{const mx=Math.max(...rows.map(r=>r[1].amount));$(el).innerHTML=rows.sort((a,b)=>b[1].amount-a[1].amount).map(([n,g])=>`<div class="row" title="${esc(n)} · ${g.n}건 · ${yen(g.amount)}"><div class="name">${esc(n)}</div><div class="track"><i style="width:${g.amount/mx*100}%"></i></div><div class="val">${yen(g.amount)}<small>${pct(g.amount,total)}</small></div></div>`).join('')};
-bars('byPay',group('payment'));bars('byCat',group('category'));
+// 02 어디에
+$('h2').textContent=`상위 2개 분류가 전체의 ${pct(cats[0][1].amount+cats[1][1].amount,total)}를 차지합니다`;
+const bars=(el,rows)=>{const mx=rows[0][1].amount;$(el).innerHTML=rows.map(([n,g])=>`<div class="row" title="${esc(n)} · ${g.n}건 · ${yen(g.amount)}"><div class="name">${esc(n)}</div><div class="track"><i style="width:${g.amount/mx*100}%"></i></div><div class="val num">${yen(g.amount)}<small>${pct(g.amount,total)}</small></div></div>`).join('')};
+bars('byCat',cats);bars('byPay',pays);
+const maxDay=Math.max(...days.map(d=>d[1].amount));
+$('byDay').innerHTML=days.map(([d,g])=>`<div class="row" title="${PEOPLE.filter(p=>g[p.k]>0).map(p=>`${p.name} ${yen(g[p.k])}`).join(' · ')}"><div class="name">${dlabel(d)}<small>${g.n}건</small></div><div class="track">${PEOPLE.filter(p=>g[p.k]>0).map(p=>`<i class="bg-${p.k}" style="width:${g[p.k]/maxDay*100}%"></i>`).join('')}</div><div class="val num">${yen(g.amount)}</div></div>`).join('')+`<div class="legend">${PEOPLE.map(p=>`<span><i class="dot bg-${p.k}"></i>${p.name}</span>`).join('')}</div>`;
 
-// 확인 필요
+// 03 확인 필요
 const refund=DATA.filter(t=>t.refund),unsureTx=DATA.filter(t=>t.unsure),slips=DATA.filter(t=>t.items.length===1&&t.items[0].name.includes('상세 품목 미표기'));
-$('notices').innerHTML=refund.map(t=>`<div class="notice"><b>면세 환급 ${yen(t.refund.refundPrinted)} — 받았는지 미확인 (합계에 반영하지 않음)</b>${esc(t.merchant)} 결제액은 ${yen(t.amount)}(세전 ${yen(t.amount-t.refund.taxTotal)} + 소비세 ${yen(t.refund.taxTotal)})입니다. 영수증의 면세 환급액 표기는 ${yen(t.refund.refundPrinted)}로, 소비세 합계 ${yen(t.refund.taxTotal)}와 다릅니다(면세 비대상 1점 차이). 환급이 확인되면 이 영수증의 실부담은 ${yen(t.amount-t.refund.refundPrinted)}이 됩니다. 반출 확인 기한 ${t.refund.deadline}.</div>`).join('')
- +(slips.length?`<div class="notice"><b>품목을 알 수 없는 카드 전표 ${slips.length}건 · ${yen(slips.reduce((s,t)=>s+t.amount,0))}</b>${slips.map(t=>`${esc(t.merchant)} ${yen(t.amount)}`).join(', ')}. 금액만 인쇄된 전표라 내용은 확인하지 못했습니다.</div>`:'')
- +(unsureTx.length?`<div class="notice"><b>품목명 판독 불확실 ${unsureTx.reduce((s,t)=>s+t.unsure,0)}개</b>${unsureTx.map(t=>esc(t.merchant)).join(', ')} 영수증에서 이름이 잘려 인쇄된 품목입니다. 금액은 영수증 소계와 일치합니다.</div>`:'');
+$('checks').innerHTML=refund.map(t=>`<div class="card check"><span class="tag">환급 미확인</span><b class="t">면세 환급액 표기</b><div class="v num">${yen(t.refund.refundPrinted)}</div><p>${esc(short(t.merchant))} 결제액 ${yen(t.amount)}에서 빼지 않았습니다. 소비세 합계 ${yen(t.refund.taxTotal)}와는 다른 금액입니다(면세 비대상 1점). 환급이 확인되면 실부담은 ${yen(t.amount-t.refund.refundPrinted)}, 반출 확인 기한은 ${t.refund.deadline}입니다.</p></div>`).join('')
+ +`<div class="card check"><span class="tag">내용 미확인</span><b class="t">품목 없는 카드 전표 ${slips.length}건</b><div class="v num">${yen(slips.reduce((s,t)=>s+t.amount,0))}</div><p>${slips.map(t=>`${esc(short(t.merchant))} ${yen(t.amount)}`).join(', ')}. 금액만 인쇄된 전표라 무엇을 샀는지는 확인하지 못했습니다.</p></div>`
+ +`<div class="card check"><span class="tag">판독 불확실</span><b class="t">이름이 잘린 품목</b><div class="v num">${unsureTx.reduce((s,t)=>s+t.unsure,0)}개</div><p>${unsureTx.map(t=>esc(short(t.merchant))).join(', ')} 영수증에서 품목명이 잘려 인쇄되어 추측하지 않았습니다. 금액은 영수증 소계와 일치합니다.</p></div>`;
 
-// 거래 목록
+// 04 거래 내역
+let who='';
 $('who').innerHTML=[['','전체'],...PEOPLE.map(p=>[p.k,p.name])].map(([k,n])=>`<button data-k="${k}">${n}</button>`).join('');
 [...new Set(DATA.map(t=>t.category))].forEach(c=>$('cat').insertAdjacentHTML('beforeend',`<option>${esc(c)}</option>`));
-function setWho(k){who=k;renderPeople();[...$('who').children].forEach(b=>b.setAttribute('aria-pressed',b.dataset.k===who));renderList()}
+function setWho(k){who=k;[...$('who').children].forEach(b=>b.setAttribute('aria-pressed',b.dataset.k===who));renderList()}
 $('who').addEventListener('click',e=>{const b=e.target.closest('button');if(b)setWho(b.dataset.k)});
 $('cat').addEventListener('change',renderList);$('q').addEventListener('input',renderList);
 function renderList(){
   const q=$('q').value.trim().toLowerCase(),cf=$('cat').value;
   const rows=DATA.filter(t=>(!who||t.share[who]>0)&&(!cf||t.category===cf)&&(!q||[t.merchant,t.category,t.payment,t.note,...t.items.map(i=>i.name+' '+(i.note||'')+' '+i.owner)].join(' ').toLowerCase().includes(q))).sort((a,b)=>(a.date+a.time).localeCompare(b.date+b.time));
   const val=t=>who?t.share[who]:t.amount,sum=rows.reduce((s,t)=>s+val(t),0);
-  $('result').innerHTML=rows.length?`${rows.length}건 · ${who?PEOPLE.find(p=>p.k===who).name+' 몫 ':'결제액 '}<b>${yen(sum)}</b>`:'';
+  $('result').innerHTML=rows.length?`${rows.length}건 · ${who?PEOPLE.find(p=>p.k===who).name+' 몫 ':'결제액 '}<b class="num">${yen(sum)}</b>`:'';
   let html='',cur='';
   rows.forEach(t=>{
-    if(t.date!==cur){cur=t.date;const dr=rows.filter(r=>r.date===cur);html+=`<div class="day"><span>${+cur.slice(5,7)}월 ${+cur.slice(8)}일</span><span>${yen(dr.reduce((s,r)=>s+val(r),0))}</span></div>`}
-    const sh=PEOPLE.filter(p=>t.share[p.k]>0);
-    html+=`<details class="tx"><summary><div class="time">${t.time}</div><div><div class="m">${esc(t.merchant)}</div><div class="meta">${esc(t.category)} · ${esc(t.payment)}</div></div><div class="total">${yen(val(t))}${who&&Math.round(t.share[who])!==t.amount?`<small>전체 ${yen(t.amount)}</small>`:''}</div><div class="shares">${sh.map(p=>`<span><i class="dot ${p.c}"></i>${p.name} ${yen(t.share[p.k])}</span>`).join('')}${t.unsure?`<span class="flag">판독 불확실 ${t.unsure}</span>`:''}${t.refund?`<span class="flag">환급 미확인</span>`:''}<span class="more">품목 ${t.items.length}개</span></div></summary><div class="items"><div class="txnote">${esc(t.note)}${Math.abs(t.scale-1)>1e-9?' 품목 금액이 결제액과 달라(세금·할인) 몫은 결제액 기준으로 비례 배분했습니다.':''}</div>${t.items.map(i=>`<div class="it"><div class="n">${esc(i.name)}${i.quantity>1?` × ${i.quantity}`:''}${i.note?`<small class="${i.note.includes('판독 불확실')?'unsure':''}">${esc(i.note)}</small>`:''}</div><span class="badge">${OWNER_LABEL[i.owner]}</span><div class="a">${yen(i.amount)}</div></div>`).join('')}</div></details>`;
+    if(t.date!==cur){cur=t.date;html+=`<div class="day"><span>${dlabel(cur)}</span><span class="num">${yen(rows.filter(r=>r.date===cur).reduce((s,r)=>s+val(r),0))}</span></div>`}
+    html+=`<details class="tx"><summary><div class="time num">${t.time}</div><div><div class="m">${esc(t.merchant)}</div><div class="meta">${esc(t.category)} · ${esc(t.payment)} · 품목 ${t.items.length}개</div><div class="who">${PEOPLE.filter(p=>t.share[p.k]>0).map(p=>`<span><i class="dot bg-${p.k}"></i>${p.name} <span class="num">${yen(t.share[p.k])}</span></span>`).join('')}${t.unsure?`<span class="pill warn">판독 불확실 ${t.unsure}</span>`:''}${t.refund?`<span class="pill warn">환급 미확인</span>`:''}</div></div><div class="total num">${yen(val(t))}${who&&Math.round(t.share[who])!==t.amount?`<small>전체 ${yen(t.amount)}</small>`:''}</div><i class="chev"></i></summary><div class="items"><div class="txnote">${esc(t.note)}${Math.abs(t.scale-1)>1e-9?' 품목 금액이 결제액과 달라(세금·할인) 몫은 결제액 기준으로 비례 배분했습니다.':''}</div>${t.items.map(i=>`<div class="it"><div class="n">${esc(i.name)}${i.quantity>1?` × ${i.quantity}`:''}${i.note?`<small class="${i.note.includes('판독 불확실')?'unsure':''}">${esc(i.note)}</small>`:''}</div><span class="pill">${OWNER_LABEL[i.owner]}</span><div class="a num">${yen(i.amount)}</div></div>`).join('')}</div></details>`;
   });
   $('list').innerHTML=html||'<div class="empty">조건에 맞는 거래가 없습니다.</div>';
 }
