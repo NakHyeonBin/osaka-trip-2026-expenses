@@ -13,10 +13,10 @@
 html{-webkit-text-size-adjust:100%}
 body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.55 Pretendard,-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic","Segoe UI",sans-serif;letter-spacing:-.01em}
 .n{font-variant-numeric:tabular-nums;text-align:right;white-space:nowrap}
-.page{background:var(--paper);max-width:1040px;margin:20px auto;padding:52px 56px 28px}
+.page{background:var(--paper);max-width:1360px;margin:14px auto;padding:26px 44px 18px}
 .eyebrow{font-size:12px;font-weight:700;color:var(--blue)}
-.head{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;margin-bottom:30px}
-.head h1{font-size:40px;line-height:1.18;letter-spacing:-.04em;margin:8px 0 10px;font-weight:800}
+.head{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;margin-bottom:16px}
+.head h1{font-size:30px;line-height:1.2;letter-spacing:-.04em;margin:5px 0 6px;font-weight:800}
 .head h2{font-size:27px;line-height:1.25;letter-spacing:-.035em;margin:6px 0 0;font-weight:800}
 .head .sub{color:var(--ink2);font-size:13px;margin:0}
 .head .unit{text-align:right;font-size:11.5px;color:var(--muted);line-height:1.6;white-space:nowrap}
@@ -26,41 +26,44 @@ body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.55 Pretendard,-a
 .keys{display:flex;gap:14px;font-size:11.5px;color:var(--ink2);flex-wrap:wrap}
 .keys i,.sq{display:inline-block;width:9px;height:9px;margin-right:5px}
 .c-blue{background:var(--blue)}.c-gray{background:var(--gray)}.c-navy{background:var(--navy)}.c-amber{background:var(--amber)}
-.block{margin-top:34px}
+.block{margin-top:18px}
 
 /* 표 */
 table{width:100%;border-collapse:collapse}
-thead th{font-size:11.5px;font-weight:500;color:var(--muted);text-align:left;padding:8px 8px;border-top:2px solid var(--ink);border-bottom:1px solid var(--line);white-space:nowrap}
+thead th{font-size:11.5px;font-weight:500;color:var(--muted);text-align:left;padding:6px 8px;border-top:2px solid var(--ink);border-bottom:1px solid var(--line);white-space:nowrap}
 thead th.n{text-align:right}
-tbody td{padding:12px 8px;border-bottom:1px solid var(--line);font-size:13.5px;vertical-align:middle}
+tbody td{padding:6px 8px;border-bottom:1px solid var(--line);font-size:13.5px;vertical-align:middle}
 tbody td:first-child{font-weight:700}
+#tPeople td:first-child,#tDay td:first-child{white-space:nowrap}
 tbody td.s{font-weight:800}
 tbody tr.sum td{font-weight:800;border-top:1px solid var(--ink);border-bottom:0}
 td small{color:var(--muted);font-weight:500;font-size:11.5px;margin-left:6px}
 .ib{display:flex;height:12px;min-width:120px}
 .ib i{display:block;height:100%}
 .ib i + i{margin-left:2px}
-#tCheck td:last-child{padding-left:20px;font-size:12.5px;color:var(--ink2);line-height:1.6}
-#tCheck td:nth-child(2){font-weight:600}
 .tag{font-size:11px;font-weight:700;color:var(--amber);border:1px solid var(--amber);padding:1px 6px;white-space:nowrap}
 
 /* 좌: 큰 숫자 + 항목, 우: 차트 */
 .split{display:grid;grid-template-columns:minmax(0,300px) minmax(0,1fr);gap:48px;align-items:start}
 .lbl{font-size:13px;font-weight:800}
 .lbl small{font-weight:500;color:var(--muted);font-size:11.5px;margin-left:8px}
-.hero{font-size:60px;font-weight:800;letter-spacing:-.05em;line-height:1.1;margin:2px 0 14px;font-variant-numeric:tabular-nums}
-.stat{display:flex;justify-content:space-between;align-items:baseline;gap:10px;padding:11px 0;border-top:1px solid var(--line);font-size:13.5px}
+.hero{font-size:48px;font-weight:800;letter-spacing:-.05em;line-height:1.1;margin:2px 0 14px;font-variant-numeric:tabular-nums}
+.stat{display:flex;justify-content:space-between;align-items:baseline;gap:10px;padding:6px 0;border-top:1px solid var(--line);font-size:13.5px}
 .stat:last-of-type{border-bottom:1px solid var(--line)}
 .stat span{color:var(--ink2)}
 .stat span small{color:var(--muted);font-size:11.5px;margin-left:6px}
 .stat b{font-size:16px;font-weight:800;font-variant-numeric:tabular-nums}
-.basis{margin:26px 0 0;padding:0;list-style:none;font-size:12.5px;color:var(--ink2)}
+.basis{margin:0;padding:0;list-style:none;font-size:12.5px;color:var(--ink2)}
 .basis li{position:relative;padding:0 0 9px 14px;line-height:1.55}
 .basis li::before{content:"";position:absolute;left:0;top:7px;width:5px;height:5px;background:var(--ink)}
-.basis-h{font-size:13px;font-weight:800;margin:28px 0 10px}
+.basis-h{font-size:13px;font-weight:800;margin:18px 0 8px}
 
+.g3{display:grid;grid-template-columns:280px minmax(0,1.05fr) minmax(0,1fr);gap:40px;align-items:start}
+.g3b{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.25fr);gap:40px;align-items:start;margin-top:20px}
+#tCheck td{font-size:12.5px}#tCheck td:nth-child(2){font-weight:600}#tCheck td small{display:inline;margin-left:8px;font-weight:400}
+#txSec{max-width:1360px}
 /* 폭포형 차트 */
-.wf{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);gap:0;height:250px;border-bottom:1px solid var(--ink);margin-top:34px}
+.wf{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);gap:0;height:132px;border-bottom:1px solid var(--ink);margin-top:24px}
 .wf .col{position:relative;height:100%}
 .wf .bar{position:absolute;left:18%;right:18%}
 .wf .v{position:absolute;left:0;right:0;text-align:center;font-size:13px;font-weight:800;font-variant-numeric:tabular-nums;white-space:nowrap;transform:translateY(-4px)}
@@ -106,11 +109,13 @@ td small{color:var(--muted);font-weight:500;font-size:11.5px;margin-left:6px}
 .it .nm small.unsure{color:var(--amber)}
 .it .ow{font-size:11.5px;color:var(--ink2);text-align:right}
 .empty{padding:40px;text-align:center;color:var(--muted)}
-.pfoot{display:flex;justify-content:space-between;margin-top:44px;font-size:11px;color:var(--muted)}
+.pfoot{display:flex;justify-content:space-between;gap:20px;margin-top:16px;font-size:11px;color:var(--muted)}
 .pfoot a{color:inherit}
 .note{font-size:12px;color:var(--muted);margin:14px 0 0;line-height:1.65}
 
+@media (max-width:1100px){.g3,.g3b{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.g3>div:first-child{grid-column:1/-1}}
 @media (max-width:860px){
+  .g3,.g3b{grid-template-columns:minmax(0,1fr);gap:26px}
   .page{margin:10px 0;padding:30px 18px 20px}
   .head{flex-direction:column;align-items:flex-start;margin-bottom:22px}
   .head h1{font-size:30px}.head h2{font-size:22px}.head .unit{text-align:left}
@@ -134,67 +139,35 @@ td small{color:var(--muted);font-weight:500;font-size:11.5px;margin-left:6px}
 </head>
 <body>
 
-<section class="page">
-  <div class="eyebrow">오사카 여행 2026.11.12 – 11.14</div>
-  <div class="head"><div><h1>오사카 여행<br>지출 정산</h1><p class="sub">영수증 <span id="nRec"></span>장 기준, 누구 몫인지는 엑셀의 지출자 열에 따름</p></div><div class="unit">단위: 엔(¥)<br>엔 미만 반올림</div></div>
+<section class="page dash">
+  <div class="head"><div><div class="eyebrow">오사카 여행 2026.11.12 – 11.14</div><h1>오사카 여행 지출 정산</h1><p class="sub">영수증 <span id="nRec"></span>장 기준 · 누구 몫인지는 엑셀의 지출자 열에 따름</p></div><div class="unit">단위: 엔(¥)<br>엔 미만 반올림</div></div>
 
-  <div class="cap"><b>사람별 부담<small>공동은 1/2씩, 4인 식사는 2인분씩</small></b><div class="keys"><span><i class="c-blue"></i>개인</span><span><i class="c-gray"></i>공동</span><span><i class="c-navy"></i>4인 식사</span></div></div>
-  <table><thead><tr><th>구분</th><th class="n">개인 지출</th><th class="n">공동 몫</th><th class="n">4인 식사 몫</th><th class="n">합계</th><th class="n hm">비중</th><th class="hm">구성 비교</th></tr></thead><tbody id="tPeople"></tbody></table>
-
-  <div class="block">
-    <div class="cap"><b>지출 요약<small>영수증·카드 전표의 최종 결제액 기준</small></b></div>
-    <table><thead><tr><th>구분</th><th class="n">거래</th><th class="n">결제 합계</th><th class="n">하루 평균</th><th class="n hm">가장 큰 거래</th><th class="n hm">품목 없는 전표</th><th class="n hm">환급 미확인</th></tr></thead><tbody id="tSum"></tbody></table>
-  </div>
-  <div class="pfoot"><span>오사카 여행 지출 정산</span><span>1 / 5</span></div>
-</section>
-
-<section class="page">
-  <div class="eyebrow">분담</div>
-  <div class="head"><h2>누가 얼마를 부담하나</h2><div class="unit">단위: 엔(¥)<br>결제액을 지출자 기준으로 나눔</div></div>
-  <div class="split">
+  <div class="g3">
     <div>
       <div class="lbl">결제 합계<small id="lblN"></small></div>
       <div class="hero" id="heroTotal"></div>
       <div id="statTotal"></div>
-      <div class="basis-h">분담 기준</div>
-      <ul class="basis">
-        <li>NH · YH로 적힌 품목은 각자 개인 지출로 전액 부담</li>
-        <li>공동으로 적힌 품목은 NH · YH가 1/2씩 부담</li>
-        <li>4인 식사는 우리 2인분(NH · YH 각 1/4)과 동행 2인분(1/2)으로 나눔</li>
-        <li>품목 금액이 세전인 영수증은 결제액을 품목 금액 비율로 배분</li>
-        <li>돈키호테 소비세 중 조니워커분 ¥1,980은 NH, 나머지는 공동</li>
-      </ul>
+      <div class="block"><div class="cap"><b>날짜별 지출</b></div><table><thead><tr><th>날짜</th><th class="n">거래</th><th class="n">금액</th><th class="n">비중</th></tr></thead><tbody id="tDay"></tbody></table></div>
     </div>
     <div>
       <div class="cap"><b>지출 구성<small>지출자 구분별 누적</small></b><div class="keys"><span><i class="c-blue"></i>개인</span><span><i class="c-gray"></i>함께 쓴 지출</span><span><i class="c-navy"></i>합계</span></div></div>
       <div class="wf" id="wf"></div><div class="wfx" id="wfx"></div>
       <div class="block">
-        <div class="cap"><b>사람별 큰 지출<small>몫 기준 상위 4건</small></b></div>
-        <div class="two" id="tops"></div>
+        <div class="cap"><b>사람별 부담</b><div class="keys"><span><i class="c-blue"></i>개인</span><span><i class="c-gray"></i>공동</span><span><i class="c-navy"></i>4인</span></div></div>
+        <table><thead><tr><th>구분</th><th class="n">개인</th><th class="n">공동 몫</th><th class="n">4인 몫</th><th class="n">합계</th><th class="n">비중</th><th class="hm" style="width:18%">구성</th></tr></thead><tbody id="tPeople"></tbody></table>
       </div>
     </div>
+    <div>
+      <div class="cap"><b>분류별 지출<small>금액 큰 순</small></b><div class="keys"><span><i class="c-blue"></i>NH</span><span><i class="c-navy"></i>YH</span><span><i class="c-gray"></i>동행</span></div></div>
+      <table><thead><tr><th>분류</th><th class="n">금액</th><th class="n">비중</th><th style="width:30%">몫 비교</th></tr></thead><tbody id="tCat"></tbody></table>
+    </div>
   </div>
-  <div class="pfoot"><span>오사카 여행 지출 정산</span><span>2 / 5</span></div>
-</section>
 
-<section class="page">
-  <div class="eyebrow">사용처</div>
-  <div class="head"><h2>어디에 썼나</h2><div class="unit">단위: 엔(¥)<br>결제액 기준</div></div>
-  <div class="cap"><b>분류별 지출<small>금액 큰 순</small></b><div class="keys"><span><i class="c-blue"></i>NH 몫</span><span><i class="c-navy"></i>YH 몫</span><span><i class="c-gray"></i>동행 2인 몫</span></div></div>
-  <table><thead><tr><th>분류</th><th class="n hm">거래</th><th class="n">금액</th><th class="n">비중</th><th class="n hm">NH 몫</th><th class="n hm">YH 몫</th><th>몫 비교</th></tr></thead><tbody id="tCat"></tbody></table>
-  <div class="two block">
-    <div><div class="cap"><b>날짜별 지출</b></div><table><thead><tr><th>날짜</th><th class="n">거래</th><th class="n">금액</th><th class="n">비중</th></tr></thead><tbody id="tDay"></tbody></table></div>
+  <div class="g3b">
     <div><div class="cap"><b>결제수단별 지출<small>영수증 표기 그대로</small></b></div><table><thead><tr><th>결제수단</th><th class="n">거래</th><th class="n">금액</th><th class="n">비중</th></tr></thead><tbody id="tPay"></tbody></table></div>
+    <div><div class="cap"><b>확인이 필요한 항목<small>합계에 반영하지 않음</small></b></div><table><thead><tr><th style="width:92px">구분</th><th>대상</th><th class="n">금액</th></tr></thead><tbody id="tCheck"></tbody></table></div>
   </div>
-  <div class="pfoot"><span>오사카 여행 지출 정산</span><span>3 / 5</span></div>
-</section>
-
-<section class="page">
-  <div class="eyebrow">검토</div>
-  <div class="head"><h2>확인이 필요한 항목</h2><div class="unit">합계에는 반영하지 않고<br>따로 표시한 내용</div></div>
-  <table><thead><tr><th style="width:104px">구분</th><th style="width:22%">대상</th><th class="n" style="width:76px">금액</th><th style="padding-left:20px">내용</th></tr></thead><tbody id="tCheck"></tbody></table>
-  <p class="note">누가 결제했는지(카드 주인)는 영수증으로 알 수 없어 "누구 몫인지"만 정리했습니다. 카드 끝자리가 인쇄된 전표 2건은 모두 7355이며, 다른 카드 결제는 끝자리가 없습니다.</p>
-  <div class="pfoot"><span>오사카 여행 지출 정산</span><span>4 / 5</span></div>
+  <div class="pfoot"><span><b style="color:var(--ink2)">분담 기준</b> 공동 품목은 NH·YH가 1/2씩 · 4인 식사는 우리 2인분(각 1/4)과 동행 2인분(1/2) · 세전 표기 영수증은 결제액을 품목 비율로 배분 · 누가 결제했는지는 영수증으로 알 수 없어 "누구 몫인지"만 정리</span><span>1 / 2</span></div>
 </section>
 
 <section class="page" id="txSec">
@@ -208,7 +181,7 @@ td small{color:var(--muted);font-weight:500;font-size:11.5px;margin-left:6px}
   </div>
   <div class="txg txh"><span>시간</span><span>거래처</span><span class="hm">결제수단</span><span class="n hm">NH 몫</span><span class="n hm">YH 몫</span><span class="n hm">동행 몫</span><span class="n" id="thTot">결제액</span><span></span></div>
   <div id="list"></div>
-  <div class="pfoot"><span>원본 데이터: <a href="일본여행_영수증_품목별정리.csv">일본여행_영수증_품목별정리.csv</a></span><span>5 / 5</span></div>
+  <div class="pfoot"><span>원본 데이터: <a href="일본여행_영수증_품목별정리.csv">일본여행_영수증_품목별정리.csv</a></span><span>2 / 2</span></div>
 </section>
 
 <script>
@@ -239,35 +212,33 @@ const refund=DATA.filter(t=>t.refund),unsureTx=DATA.filter(t=>t.unsure),slips=DA
 const slipSum=slips.reduce((s,t)=>s+t.amount,0),refundSum=refund.reduce((s,t)=>s+t.refund.refundPrinted,0);
 const dash=v=>v?num(v):'<span style="color:#c3c8cf">–</span>';
 
-// 1쪽
+// 요약
 $('nRec').textContent=DATA.length;
 const maxP=Math.max(...PEOPLE.map(p=>P[p.k].total));
-$('tPeople').innerHTML=PEOPLE.map(p=>{const x=P[p.k];return `<tr><td>${p.name}</td><td class="n">${dash(x.solo)}</td><td class="n">${dash(x.joint)}</td><td class="n">${dash(x.four)}</td><td class="n s">${num(x.total)}</td><td class="n hm">${pct(x.total,total)}</td><td class="hm"><div class="ib" style="width:${Math.max(x.total/maxP*100,2)}%;min-width:0" title="개인 ${num(x.solo)} · 공동 ${num(x.joint)} · 4인 ${num(x.four)}">${[['c-blue',x.solo],['c-gray',x.joint],['c-navy',x.four]].filter(s=>s[1]>0).map(s=>`<i class="${s[0]}" style="width:${s[1]/x.total*100}%"></i>`).join('')}</div></td></tr>`}).join('')
- +`<tr class="sum"><td>합계</td><td class="n">${num(P.NH.solo+P.YH.solo)}</td><td class="n">${num(P.NH.joint+P.YH.joint)}</td><td class="n">${num(P.NH.four+P.YH.four+P.CO.four)}</td><td class="n">${num(total)}</td><td class="n hm">100.0%</td><td class="hm"></td></tr>`;
-$('tSum').innerHTML=`<tr><td>전체</td><td class="n">${DATA.length}건</td><td class="n s">${num(total)}</td><td class="n">${num(total/days.length)}</td><td class="n hm">${num(biggest.amount)}<small>${esc(short(biggest.merchant))}</small></td><td class="n hm">${num(slipSum)}<small>${slips.length}건</small></td><td class="n hm">${num(refundSum)}</td></tr>`;
+$('tPeople').innerHTML=PEOPLE.map(p=>{const x=P[p.k];return `<tr><td>${p.name}</td><td class="n">${dash(x.solo)}</td><td class="n">${dash(x.joint)}</td><td class="n">${dash(x.four)}</td><td class="n s">${num(x.total)}</td><td class="n">${pct(x.total,total)}</td><td class="hm"><div class="ib" style="width:${Math.max(x.total/maxP*100,2)}%;min-width:0" title="개인 ${num(x.solo)} · 공동 ${num(x.joint)} · 4인 ${num(x.four)}">${[['c-blue',x.solo],['c-gray',x.joint],['c-navy',x.four]].filter(s=>s[1]>0).map(s=>`<i class="${s[0]}" style="width:${s[1]/x.total*100}%"></i>`).join('')}</div></td></tr>`}).join('')
+ +`<tr class="sum"><td>합계</td><td class="n">${num(P.NH.solo+P.YH.solo)}</td><td class="n">${num(P.NH.joint+P.YH.joint)}</td><td class="n">${num(P.NH.four+P.YH.four+P.CO.four)}</td><td class="n">${num(total)}</td><td class="n">100.0%</td><td class="hm"></td></tr>`;
 
-// 2쪽
-$('lblN').textContent=`거래 ${DATA.length}건`;$('heroTotal').textContent=num(total);
+// 합계·차트
+$('lblN').textContent=`거래 ${DATA.length}건 · ${days.length}일`;$('heroTotal').textContent=num(total);
 $('statTotal').innerHTML=[['NH 몫',pct(P.NH.total,total),P.NH.total],['YH 몫',pct(P.YH.total,total),P.YH.total],['동행 2인 몫',pct(P.CO.total,total),P.CO.total],['우리 둘 부담','NH + YH',P.NH.total+P.YH.total]].map(r=>`<div class="stat"><span>${r[0]}<small>${r[1]}</small></span><b>${num(r[2])}</b></div>`).join('');
 const own={};DATA.forEach(t=>t.items.forEach(i=>own[i.owner]=(own[i.owner]||0)+i.amount*t.scale));
 const steps=[['NH 개인',own.NH||0,'c-blue'],['YH 개인',own.YH||0,'c-blue'],['공동',own['공동']||0,'c-gray'],['4인 식사',own['4인']||0,'c-gray']];
 let acc=0;const H=v=>v/total*88; // 위쪽 12%는 값 표시 여백
 $('wf').innerHTML=steps.map(([n,v,c])=>{const b=acc;acc+=v;return `<div class="col" title="${n} ${num(v)}"><div class="bar ${c}" style="bottom:${H(b)}%;height:${Math.max(H(v),.6)}%"></div><div class="v" style="bottom:${H(acc)}%">${b?'+':''}${num(v)}</div><div class="link" style="bottom:${H(acc)}%"></div></div>`}).join('')+`<div class="col" title="합계 ${num(total)}"><div class="bar c-navy" style="bottom:0;height:${H(total)}%"></div><div class="v" style="bottom:${H(total)}%">${num(total)}</div></div>`;
 $('wfx').innerHTML=steps.map(([n,v])=>`<div><b>${n}</b><span>${pct(v,total)}</span></div>`).join('')+`<div><b>결제 합계</b><span>100.0%</span></div>`;
-$('tops').innerHTML=['NH','YH'].map(k=>`<table><thead><tr><th>${k}</th><th class="n">몫</th></tr></thead><tbody>${DATA.filter(t=>t.share[k]>0).sort((a,b)=>b.share[k]-a.share[k]).slice(0,4).map(t=>`<tr><td style="font-weight:500">${esc(short(t.merchant))}</td><td class="n s">${num(t.share[k])}</td></tr>`).join('')}</tbody></table>`).join('');
 
-// 3쪽
+// 분류·날짜·결제수단
 const maxC=cats[0][1].amount;
-$('tCat').innerHTML=cats.map(([n,g])=>`<tr><td>${esc(n)}</td><td class="n hm">${g.n}건</td><td class="n s">${num(g.amount)}</td><td class="n">${pct(g.amount,total)}</td><td class="n hm">${dash(g.NH)}</td><td class="n hm">${dash(g.YH)}</td><td style="width:26%"><div class="ib" style="min-width:0;width:${Math.max(g.amount/maxC*100,1.5)}%" title="${PEOPLE.filter(p=>g[p.k]>0).map(p=>`${p.name} ${num(g[p.k])}`).join(' · ')}">${PEOPLE.filter(p=>g[p.k]>0).map(p=>`<i class="${p.c}" style="width:${g[p.k]/g.amount*100}%"></i>`).join('')}</div></td></tr>`).join('')+`<tr class="sum"><td>합계</td><td class="n hm">${DATA.length}건</td><td class="n">${num(total)}</td><td class="n">100.0%</td><td class="n hm">${num(P.NH.total)}</td><td class="n hm">${num(P.YH.total)}</td><td></td></tr>`;
+$('tCat').innerHTML=cats.map(([n,g])=>`<tr title="${g.n}건 · ${PEOPLE.filter(p=>g[p.k]>0).map(p=>`${p.name} ${num(g[p.k])}`).join(' · ')}"><td>${esc(n)}</td><td class="n s">${num(g.amount)}</td><td class="n">${pct(g.amount,total)}</td><td><div class="ib" style="min-width:0;width:${Math.max(g.amount/maxC*100,2)}%">${PEOPLE.filter(p=>g[p.k]>0).map(p=>`<i class="${p.c}" style="width:${g[p.k]/g.amount*100}%"></i>`).join('')}</div></td></tr>`).join('')+`<tr class="sum"><td>합계</td><td class="n">${num(total)}</td><td class="n">100.0%</td><td></td></tr>`;
 const simple=(el,rows,fmt)=>$(el).innerHTML=rows.map(([n,g])=>`<tr><td>${esc(fmt?fmt(n):n)}</td><td class="n">${g.n}건</td><td class="n s">${num(g.amount)}</td><td class="n">${pct(g.amount,total)}</td></tr>`).join('')+`<tr class="sum"><td>합계</td><td class="n">${DATA.length}건</td><td class="n">${num(total)}</td><td class="n">100.0%</td></tr>`;
 simple('tDay',days,dlabel);simple('tPay',pays);
 
-// 4쪽
-$('tCheck').innerHTML=refund.map(t=>`<tr><td><span class="tag">환급 미확인</span></td><td>${esc(short(t.merchant))}</td><td class="n s">${num(t.refund.refundPrinted)}</td><td>영수증의 면세 환급액 표기. 결제액 ${num(t.amount)}에서 빼지 않았음. 소비세 합계 ${num(t.refund.taxTotal)}와는 다른 금액(면세 비대상 1점). 환급 확인 시 실부담 ${num(t.amount-t.refund.refundPrinted)}, 반출 확인 기한 ${t.refund.deadline}.</td></tr>`).join('')
- +slips.map(t=>`<tr><td><span class="tag">내용 미확인</span></td><td>${esc(short(t.merchant))}</td><td class="n s">${num(t.amount)}</td><td>금액만 인쇄된 카드 전표라 무엇을 샀는지 확인하지 못함. 지출자는 엑셀 기준 ${OWNER_LABEL[t.items[0].owner]}.</td></tr>`).join('')
- +unsureTx.map(t=>`<tr><td><span class="tag">판독 불확실</span></td><td>${esc(short(t.merchant))}</td><td class="n s">${t.unsure}개</td><td>품목명이 잘려 인쇄된 품목. 추측하지 않고 표시만 함. 금액은 영수증 소계와 일치.</td></tr>`).join('');
+// 확인 필요
+$('tCheck').innerHTML=refund.map(t=>`<tr title="소비세 합계 ${num(t.refund.taxTotal)}와는 다른 금액. 환급 확인 시 실부담 ${num(t.amount-t.refund.refundPrinted)}"><td><span class="tag">환급 미확인</span></td><td>${esc(short(t.merchant))}<small>면세 환급액 표기 · 결제액에서 빼지 않음 · 기한 ${t.refund.deadline}</small></td><td class="n s">${num(t.refund.refundPrinted)}</td></tr>`).join('')
+ +slips.map(t=>`<tr><td><span class="tag">내용 미확인</span></td><td>${esc(short(t.merchant))}<small>금액만 인쇄된 카드 전표 · 지출자 ${OWNER_LABEL[t.items[0].owner]}</small></td><td class="n s">${num(t.amount)}</td></tr>`).join('')
+ +unsureTx.map(t=>`<tr><td><span class="tag">판독 불확실</span></td><td>${esc(short(t.merchant))}<small>품목명이 잘려 인쇄됨 · 금액은 소계와 일치</small></td><td class="n s">${t.unsure}개</td></tr>`).join('');
 
-// 5쪽
+// 거래 내역
 let who='';
 $('who').innerHTML=[['','전체'],...PEOPLE.map(p=>[p.k,p.name])].map(([k,n])=>`<button data-k="${k}">${n}</button>`).join('');
 [...new Set(DATA.map(t=>t.category))].forEach(c=>$('cat').insertAdjacentHTML('beforeend',`<option>${esc(c)}</option>`));
